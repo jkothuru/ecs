@@ -59,7 +59,7 @@ node {
           "
         ).trim()
         echo "currentTask: $currentTask"
-        if(currTaskDef) {
+       /* if(currTaskDef) {
           sh  "                                                                   \
             aws ecs update-service  --cluster ${clusterName}                      \
                                     --region 'ap-southeast-2'                       \
@@ -67,7 +67,7 @@ node {
                                     --task-definition ${taskFamily}:${currTaskDef}\
                                     --desired-count 0                             \
           "
-        }
+        } */
         if (currentTask) {
           sh "aws ecs stop-task --cluster ${clusterName} --task ${currentTask} --region 'ap-southeast-2'"
         }
