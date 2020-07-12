@@ -5,7 +5,7 @@
     "containerDefinitions": [
         {
             "name": "test",
-            "image": "042235167771.dkr.ecr.ap-southeast-2.amazonaws.com/api-vpn-setup:10",
+            "image": "042235167771.dkr.ecr.ap-southeast-2.amazonaws.com/api-vpn-setup:%BUILD_TAG%",
             "portMappings": [
                 {
                     "containerPort": 2001,
