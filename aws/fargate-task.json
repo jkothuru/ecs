@@ -1,0 +1,30 @@
+
+{
+    "family": "sample-fargate",
+    "networkMode": "awsvpc",
+    "containerDefinitions": [
+        {
+            "name": "test",
+            "image": "042235167771.dkr.ecr.ap-southeast-2.amazonaws.com/api-vpn-setup:10",
+            "portMappings": [
+                {
+                    "containerPort": 2001,
+                    "hostPort": 2001,
+                    "protocol": "tcp"
+                }
+            ],
+            "essential": true,
+            "entryPoint": [
+                "sh",
+                "-c"
+            ]
+        }
+    ],
+   "executionRoleArn": "arn:aws:iam::042235167771:role/ecsTaskExecutionRole",
+
+    "requiresCompatibilities": [
+        "FARGATE"
+    ],
+    "cpu": "256",
+    "memory": "512"
+}
