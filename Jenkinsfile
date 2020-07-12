@@ -41,7 +41,7 @@ node {
           returnStdout: true,
           script:  "                                                              \
             aws ecs describe-task-definition  --task-definition ${taskFamily}     \
-                                               --region ap-southeast-2            \ 
+                                               --region 'ap-southeast-2'            \ 
                                               | egrep 'revision'                  \
                                               | tr ',' ' '                        \
                                               | awk '{print \$2}'                 \
@@ -52,7 +52,7 @@ node {
           returnStdout: true,
           script:  "                                                              \
             aws ecs list-tasks  --cluster ${clusterName}                          \
-                                --region ap-southeast-2                           \
+                                --region 'ap-southeast-2'                           \
                                 --family ${taskFamily}                            \
                                 --output text                                     \
                                 | egrep 'TASKARNS'                                \
@@ -63,19 +63,19 @@ node {
         if(currTaskDef) {
           sh  "                                                                   \
             aws ecs update-service  --cluster ${clusterName}                      \
-                                    --region ap-southeast-2                       \
+                                    --region 'ap-southeast-2'                       \
                                     --service ${serviceName}                      \
                                     --task-definition ${taskFamily}:${currTaskDef}\
                                     --desired-count 0                             \
           "
         }
         if (currentTask) {
-          sh "aws ecs stop-task --cluster ${clusterName} --task ${currentTask} --region ap-southeast-2"
+          sh "aws ecs stop-task --cluster ${clusterName} --task ${currentTask} --region 'ap-southeast-2'"
         }
 
         sh  "                                                                     \
           aws ecs register-task-definition  --family ${taskFamily}                \
-                                            --region ap-southeast-2               \
+                                            --region 'ap-southeast-2'               \
                                             --cli-input-json ${taskDefile}        \
         "
 
@@ -84,7 +84,7 @@ node {
           returnStdout: true,
           script:  "                                                              \
             aws ecs describe-task-definition  --task-definition ${taskFamily}     \
-                                              --region ap-southeast-2             \
+                                              --region 'ap-southeast-2'             \
                                               | egrep 'revision'                  \
                                               | tr ',' ' '                        \
                                               | awk '{print \$2}'                 \
@@ -94,7 +94,7 @@ node {
         if(!currTaskDef) {
           sh  "                                                                   \
             aws ecs create-service  --cluster ${clusterName}                      \
-                                    --region ap-southeast-2                       \
+                                    --region 'ap-southeast-2'                       \
                                     --service ${serviceName}                      \
                                     --task-definition ${taskFamily}:${currTaskDef}\
                                     --desired-count 0                             \
@@ -104,7 +104,7 @@ node {
         }
         sh  "                                                                     \
           aws ecs update-service  --cluster ${clusterName}                        \
-                                  --region ap-southeast-2                         \
+                                  --region 'ap-southeast-2'                         \
                                   --service ${serviceName}                        \
                                   --task-definition ${taskFamily}:${taskRevision} \
                                   --desired-count 1                               \
