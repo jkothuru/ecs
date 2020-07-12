@@ -5,16 +5,16 @@ node {
       def dockerFilePrefix
       def clusterName = "fargate-cluster"
 
-      def remoteImageTag  = "13" //"${BUILD_NUMBER}"
+      def remoteImageTag  = "${BUILD_NUMBER}"
       def dir = "$WORKSPACE"
       def taskDefile      = "file://${dir}/aws/task-definition-${remoteImageTag}.json"
       def ecRegistry      = "https://%ACCOUNT%.dkr.ecr.ap-southeast-2.amazonaws.com"
 
     stage('code checkout') {
-        // checkout([$class: 'GitSCM', branches: [[name: 'develop']], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'CloneOption', noTags: false, reference: '', shallow: false, timeout: 20]], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'JK-Bitbucket', url: 'https://jkothuru@bitbucket.org/dcmdevs/api-vpn-setup.git']]])
-           checkout scm
+        checkout([$class: 'GitSCM', branches: [[name: 'develop']], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'CloneOption', noTags: false, reference: '', shallow: false, timeout: 20]], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'JK-Bitbucket', url: 'https://jkothuru@bitbucket.org/dcmdevs/api-vpn-setup.git']]])
+           // checkout scm
    }
-    /*
+    
     stage('docker build') {
 
         docker.build("042235167771.dkr.ecr.ap-southeast-2.amazonaws.com/api-vpn-setup:$BUILD_NUMBER")
@@ -27,7 +27,7 @@ node {
         sh 'docker push 042235167771.dkr.ecr.ap-southeast-2.amazonaws.com/api-vpn-setup:$BUILD_NUMBER'
         echo "Pushed image to ecr repository"
     }
-*/
+
       stage("Deploy") {
   
         sh  "                                                                     \
