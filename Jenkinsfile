@@ -1,6 +1,6 @@
 node {
 // ws("workspace/${env.JOB_NAME}"){
-      def serviceName
+      def serviceName = "sample-fargate"
       def taskFamily = "sample-fargate"
       def dockerFilePrefix
       def clusterName = "fargate-cluster"
