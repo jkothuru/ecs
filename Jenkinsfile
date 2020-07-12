@@ -40,8 +40,7 @@ node {
         def currTaskDef = sh (
           returnStdout: true,
           script:  "                                                              \
-            aws ecs describe-task-definition  --task-definition ${taskFamily}     \
-                                               --region 'ap-southeast-2'            \ 
+            aws ecs describe-task-definition  --region 'ap-southeast-2' --task-definition ${taskFamily}     \
                                               | egrep 'revision'                  \
                                               | tr ',' ' '                        \
                                               | awk '{print \$2}'                 \
