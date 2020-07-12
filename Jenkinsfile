@@ -46,7 +46,7 @@ node {
                                               | awk '{print \$2}'                 \
           "
         ).trim()
-
+      echo "currTaskDef: $currTaskDef"
         def currentTask = sh (
           returnStdout: true,
           script:  "                                                              \
@@ -58,7 +58,7 @@ node {
                                 | awk '{print \$2}'                               \
           "
         ).trim()
-
+        echo "currentTask: $currentTask"
         if(currTaskDef) {
           sh  "                                                                   \
             aws ecs update-service  --cluster ${clusterName}                      \
