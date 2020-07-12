@@ -97,7 +97,7 @@ node {
                                     --service-name ${serviceName}                      \
                                     --task-definition ${taskFamily}:${currTaskDef}\
                                     --desired-count 1                             \
-                                    --launch-type "FARGATE"                       \
+                                    --launch-type 'FARGATE'                       \
                                     --network-configuration 'awsvpcConfiguration={subnets=[subnet-0ad93e27d3491ab33],securityGroups=[sg-0d75fdcec73061038],assignPublicIp=ENABLED}' \
                                     --region ap-southeast-2"                       \
        // }
