@@ -1,9 +1,9 @@
 node {
 // ws("workspace/${env.JOB_NAME}"){
       def serviceName
-      def taskFamily
+      def taskFamily = "sample-fargate"
       def dockerFilePrefix
-      def clusterName
+      def clusterName = "fargate-cluster"
 
       def remoteImageTag  = "13" //"${BUILD_NUMBER}"
       def dir = "$WORKSPACE"
