@@ -90,7 +90,7 @@ node {
           "
         ).trim()
         
-        if(!currTaskDef) {
+        //if(!currTaskDef) {
           sh  "                                                                   \
             aws ecs create-service  --cluster ${clusterName}                      \
                                     --region 'ap-southeast-2'                       \
@@ -101,7 +101,7 @@ node {
                                     --network-configuration 'awsvpcConfiguration={subnets=[subnet-0ad93e27d3491ab33],securityGroups=[sg-0d75fdcec73061038],assignPublicIp=ENABLED}' \
                                     --region ap-southeast-2"                       \
         }
-            else 
+        /*    else 
             {
                   
         sh  "                                                                     \
@@ -111,7 +111,7 @@ node {
                                   --task-definition ${taskFamily}:${taskRevision} \
                                   --desired-count 1                               \
                   " 
-            }
+            } */
       }
 
       stage("BUILD SUCCEED") {
